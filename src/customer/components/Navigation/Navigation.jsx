@@ -501,6 +501,7 @@ const handleCategoryClick = (category, section, item, close) => {
                         <MenuItem 
                         onClick={handleCloseUserMenu}
                         sx={{
+                          fontFamily: 'Space Grotesk',
                           fontSize: 14,
                         }}
                         >
@@ -509,6 +510,7 @@ const handleCategoryClick = (category, section, item, close) => {
 
                         <MenuItem
                         sx={{
+                          fontFamily: 'Space Grotesk',
                           fontSize: 14,
                         }}
                         >
@@ -517,6 +519,7 @@ const handleCategoryClick = (category, section, item, close) => {
 
                         <MenuItem
                         sx={{
+                          fontFamily: 'Space Grotesk',
                           fontSize: 14,
                         }}
                         >
