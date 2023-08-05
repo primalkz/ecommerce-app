@@ -80,7 +80,7 @@ export const computer_parts = [
         "description": "The ASUS ROG Strix B550-F Gaming is a feature-packed motherboard suitable for gaming enthusiasts and content creators."
     },
     {
-        "imageUrl": "https://bdmarketprice.com/wp-content/uploads/2020/11/Samsung-970-EVO-Plus.jpg",
+        "imageUrl": "https://ampro.in/wp-content/uploads/2023/06/Samsung-970-EVO-Plus-1TB-PCIe-NVMe-M.2-2280-SSD-510x510.png",
         "brand": "Samsung",
         "title": "Samsung 970 EVO Plus 1TB NVMe SSD",
         "color": "Black",
