@@ -7,6 +7,11 @@ import { computer_parts } from '../../../Data/computer_parts'
 import ProductCard from './ProductCard'
 import { filters } from './FilterData'
 import { singleFilter } from './FilterData'
+import { FormControl, FormLabel, RadioGroup, FormControlLabel, Radio } from '@mui/material';
+import FilterListIcon from '@mui/icons-material/FilterList';
+import { useLocation, useNavigate } from 'react-router-dom'
+
+
 
 const sortOptions = [
   { name: 'Price: Low to High', href: '#', current: false },
@@ -20,6 +25,42 @@ function classNames(...classes) {
 
 export default function Product() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
+
+  const location=useLocation()
+  const navigate=useNavigate();
+
+  const handleFilter=(value, sectionId)=>{
+    const searchParams= new URLSearchParams(location.search)
+
+    let filterValue=searchParams.getAll(sectionId)
+    if (filterValue.length>0 && filterValue[0].split(",").includes(value)){
+      filterValue=filterValue[0].split(",").filter((item)=>item!==value);
+
+      if(filterValue.length==0){
+        searchParams.delete(sectionId)
+      }
+    }
+    else{
+      filterValue.push(value)
+    }
+
+    if(filterValue.length){
+      searchParams.set(sectionId,filterValue.join(","));
+      
+    }
+
+    const query = searchParams.toString();
+    navigate({search:`?${query}`})
+  }
+
+  const handleRadioFilterChange=(e,sectionId)=>{
+    const searchParams= new URLSearchParams(location.search)
+
+    searchParams.set(sectionId,e.target.value)
+    const query = searchParams.toString();
+    navigate({search:`?${query}`})
+
+  }
 
   return (
     <div className="bg-white">
@@ -227,7 +268,14 @@ export default function Product() {
 
             <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-5">
               {/* Filters */}
+              <div>
+                <div className='flex justify-between items-center py-10'>
+                <h1 className='text-left text-lg opacity-50 font-bold'>Filters</h1>
+              <FilterListIcon/>
+                </div>
+              
               <form className="text-left hidden lg:block">
+              
                 
 
                 {filters.map((section) => (
@@ -251,6 +299,7 @@ export default function Product() {
                             {section.options.map((option, optionIdx) => (
                               <div key={option.value} className="flex items-center">
                                 <input
+                                onChange={()=>handleFilter(option.value, section.id)}
                                   id={`filter-${section.id}-${optionIdx}`}
                                   name={`${section.id}[]`}
                                   defaultValue={option.value}
@@ -277,9 +326,12 @@ export default function Product() {
                   <Disclosure as="div" key={section.id} className="border-b border-gray-200 py-6">
                     {({ open }) => (
                       <>
+                      
                         <h3 className="-my-3 flow-root">
                           <Disclosure.Button className="flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500">
-                            <span className="font-medium text-gray-900">{section.name}</span>
+                            {/*<span className="font-medium "></span>*/}
+                            <FormLabel sx={{color:"black", fontSize: 14, fontFamily: 'Space Grotesk',}} className='text-gray-900' id="demo-radio-buttons-group-label">{section.name}</FormLabel>
+
                             <span className="ml-6 flex items-center">
                               {open ? (
                                 <MinusIcon className="h-5 w-5" aria-hidden="true" />
@@ -291,31 +343,34 @@ export default function Product() {
                         </h3>
                         <Disclosure.Panel className="pt-6">
                           <div className="space-y-4">
+                          <FormControl>
+                          <RadioGroup
+                                aria-labelledby="demo-radio-buttons-group-label"
+                                defaultValue="female"
+                                name="radio-buttons-group"
+                              >
                             {section.options.map((option, optionIdx) => (
-                              <div key={option.value} className="flex items-center">
-                                <input
-                                  id={`filter-${section.id}-${optionIdx}`}
-                                  name={`${section.id}[]`}
-                                  defaultValue={option.value}
-                                  type="checkbox"
-                                  defaultChecked={option.checked}
-                                  className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                                />
-                                <label
-                                  htmlFor={`filter-${section.id}-${optionIdx}`}
-                                  className="ml-3 text-sm text-gray-600"
-                                >
-                                  {option.label}
-                                </label>
-                              </div>
+                              
+                              <>
+                                <FormControlLabel onChange={(e)=>handleRadioFilterChange(e,section.id)} sx={{ '& .MuiFormControlLabel-label': { fontSize: '13px' } }} value={option.value} control={<Radio />} label={option.label} />
+                              </>
+
+                              
+                            
                             ))}
+                            </RadioGroup>
+                            </FormControl>
                           </div>
                         </Disclosure.Panel>
                       </>
+                        
                     )}
                   </Disclosure>
                 ))}
               </form>
+              </div>
+              
+              
 
               {/* Product grid */}
               <div className="lg:col-span-4 w-full">
