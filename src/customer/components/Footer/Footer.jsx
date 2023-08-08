@@ -8,7 +8,7 @@ const Footer = () => {
             <Grid className='bg-black text-white text-center mt-10' container sx={{ bgcolor: "rgb(9 9 11)", color: "white", py: 3 }}>
                 <Grid item xs={12} sm={6} md={3}>
 
-                    <Typography className='pb-5' variant='h6'> Company </Typography>
+                    <Typography className='pb-5' variant='h6'> <ul>Company</ul> </Typography>
                     <div>
                         <Button className='pb-5' variant='h6' gutterBottom> About </Button>
                     </div>
@@ -25,7 +25,7 @@ const Footer = () => {
 
                 <Grid item xs={12} sm={6} md={3}>
 
-                    <Typography className='pb-5' variant='h6'> Solution </Typography>
+                    <Typography className='pb-5' variant='h6'> <ul>Solution</ul> </Typography>
                     <div>
                         <Button className='pb-5' variant='h6' gutterBottom> Marketing </Button>
                     </div>
@@ -45,7 +45,7 @@ const Footer = () => {
 
                 <Grid item xs={12} sm={6} md={3}>
 
-                    <Typography className='pb-5' variant='h6'> Documentation </Typography>
+                    <Typography className='pb-5' variant='h6'> <ul>Documentation</ul> </Typography>
                     <div>
                         <Button className='pb-5' variant='h6' gutterBottom> Guides </Button>
                     </div>
@@ -56,7 +56,7 @@ const Footer = () => {
 
                 <Grid item xs={12} sm={6} md={3}>
 
-                    <Typography className='pb-5' variant='h6'> Legal </Typography>
+                    <Typography className='pb-5' variant='h6'> <ul>Legal</ul> </Typography>
                     <div>
                         <Button className='pb-5' variant='h6' gutterBottom> Claim </Button>
                     </div>
