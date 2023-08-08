@@ -1,6 +1,6 @@
 export const computer_parts = [
     {
-        "imageUrl": "https://www.mymbt.net/pub/media/catalog/product/cache/8a59274a72317ffdf6ff3193238efca6/i/n/intel_i9-11900k_11th_generation_processor_16mb_cache_5.20_ghz_3_.png",
+        "imageUrl": "https://www.mymbt.net/pub/media/catalog/product/cache/8a59274a72317ffdf6ff3193238efca6/i/n/intel_i9-11900_11th_generation_processor_16mb_cache_5.20_ghz_2__3.png",
         "brand": "Intel",
         "title": "Intel Core i9-11900K",
         "color": "Silver",
