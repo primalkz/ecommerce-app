@@ -1,27 +1,11 @@
-/*
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    theme: {
-      extend: {
-        gridTemplateRows: {
-          '[auto,auto,1fr]': 'auto auto 1fr',
-        },
-      },
-    },
-    plugins: [
-      // ...
-      require('@tailwindcss/aspect-ratio'),
-    ],
-  }
-  ```
-*/
 import { useState } from 'react'
 import { StarIcon } from '@heroicons/react/20/solid'
 import { RadioGroup } from '@headlessui/react'
+import Rating from '@mui/material/Rating';
+import { Button, Grid, Box, LinearProgress } from '@mui/material';
+import ProductReviewCard from './ProductReviewCard';
+import { computer_parts } from '../../../Data/computer_parts';
+import HomeSectionCard from '../HomeSectionCard/HomeSectionCard';
 
 const product = {
   name: 'Basic Tee 6-Pack',
@@ -33,19 +17,19 @@ const product = {
   ],
   images: [
     {
-      src: 'https://tailwindui.com/img/ecommerce-images/product-page-02-secondary-product-shot.jpg',
+      src: 'https://m.media-amazon.com/images/I/81Q-hxowAqL._SX679_.jpg',
       alt: 'Two each of gray, white, and black shirts laying flat.',
     },
     {
-      src: 'https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-01.jpg',
+      src: 'https://m.media-amazon.com/images/I/819fBNepfoL._SX679_.jpg',
       alt: 'Model wearing plain black basic tee.',
     },
     {
-      src: 'https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-02.jpg',
+      src: 'https://m.media-amazon.com/images/I/913yADsqDxL._SX679_.jpg',
       alt: 'Model wearing plain gray basic tee.',
     },
     {
-      src: 'https://tailwindui.com/img/ecommerce-images/product-page-02-featured-product-shot.jpg',
+      src: 'https://m.media-amazon.com/images/I/913yADsqDxL._SX679_.jpg',
       alt: 'Model wearing plain white basic tee.',
     },
   ],
@@ -55,25 +39,24 @@ const product = {
     { name: 'Black', class: 'bg-gray-900', selectedClass: 'ring-gray-900' },
   ],
   sizes: [
-    { name: 'XXS', inStock: false },
-    { name: 'XS', inStock: true },
-    { name: 'S', inStock: true },
-    { name: 'M', inStock: true },
-    { name: 'L', inStock: true },
-    { name: 'XL', inStock: true },
-    { name: '2XL', inStock: true },
-    { name: '3XL', inStock: true },
+    { name: '1', inStock: true },
+    { name: '2', inStock: true },
+    { name: '3', inStock: true },
+    { name: '4', inStock: true },
+
   ],
   description:
-    'The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: "Black". Need to add an extra pop of color to your outfit? Our white tee has you covered.',
+    'AMD AM4 Socket and PCIe 4. 0: The perfect pairing for 3rd Gen AMD Ryzen CPUs',
   highlights: [
-    'Hand cut and sewn locally',
-    'Dyed with our proprietary colors',
-    'Pre-washed & pre-shrunk',
-    'Ultra-soft 100% cotton',
+    'AMD AM4 Socket and PCIe 4. 0: The perfect pairing for 3rd Gen AMD Ryzen CPUs',
+    'Robust Power Design: 12+2 DrMOS power stages with high-quality alloy chokes and durable capacitors provide reliable power for the last AMD high-count-core CPUs',
+    'Optimized Thermal Solution: Fanless VRM and chipset heatsinks with ASUS Stack Cool 3+ design keep your system running reliably under heavy load by enhancing passive cooling capacity for critical onboard components.',
+    'High-performance Gaming Networking: 2. 5 Gb LAN with ASUS LANGuard; Best Gaming Connectivity: Supports HDMI 2. 1(4K@60HZ) and DisplayPort 1. 2 output, featuring dual M. 2 slots (NVMe SSD)—one with PCIe 4. 0 x4 connectivity, USB 3. 2 Gen 2 Type-C port and Thunderbolt 3 header',
+    'Graphics Card Interface: Pci E',
+
   ],
   details:
-    'The 6-Pack includes two black, two white, and two heather gray Basic Tees. Sign up for our subscription service and be the first to get new, exciting colors, like our upcoming "Charcoal Gray" limited release.',
+    'ASUS B550 ROG Strix B550-F Gaming AMD AM4 Zen 3 Ryzen 5000 & 3rd Gen Ryzen ATX Gaming Motherboard (PCIe 4.0, 2.5Gb LAN, BIOS Flashback, HDMI 2.1, Addressable Gen 2 RGB Header and Aura Sync)',
 }
 const reviews = { href: '#', average: 4, totalCount: 117 }
 
@@ -86,7 +69,7 @@ export default function ProductDetails() {
   const [selectedSize, setSelectedSize] = useState(product.sizes[2])
 
   return (
-    <div className="bg-white">
+    <div className="bg-white lg:px-20">
       <div className="pt-6">
         <nav aria-label="Breadcrumb">
           <ol role="list" className="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
@@ -116,119 +99,65 @@ export default function ProductDetails() {
             </li>
           </ol>
         </nav>
+<section className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-10 px-4 pt-10'>
 
         {/* Image gallery */}
-        <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
-          <div className="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
+        <div className="flex flex-col items-center">
+          <div className="overflow-hidden rounded-lg max-w-[30rem] max-h-[35rem]">
             <img
               src={product.images[0].src}
               alt={product.images[0].alt}
               className="h-full w-full object-cover object-center"
             />
           </div>
-          <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
-            <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
+          <div className="flex flex-wrap space-x-5 justify-center">
+            { product.images.map((item)=> <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg max-w-[5rem] max-h-[5rem] mt-4">
               <img
-                src={product.images[1].src}
-                alt={product.images[1].alt}
+                src={item.src}
+                alt={item.alt}
                 className="h-full w-full object-cover object-center"
               />
-            </div>
-            <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
-              <img
-                src={product.images[2].src}
-                alt={product.images[2].alt}
-                className="h-full w-full object-cover object-center"
-              />
-            </div>
+            </div>)}
+            
           </div>
-          <div className="aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg">
-            <img
-              src={product.images[3].src}
-              alt={product.images[3].alt}
-              className="h-full w-full object-cover object-center"
-            />
-          </div>
+          
         </div>
 
         {/* Product info */}
-        <div className="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
-          <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
-            <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{product.name}</h1>
+        <div className="text-start lg:col-span-1 maxt-auto max-w-2x1 px-4 pb-16 sm:px-6 lg:max-w-7x1 lg:px-8 lg:pb-24 ">
+          <div className="lg:col-span-2 ">
+            <h1 className="text-lg lg:text-xl font-semibold text-gray-900">ASUS</h1>
+            <h1 className='text-lg lg:text-xl text-gray-900 opacity-70 pt-1'>ASUS ROG Strix B550-F Gaming Motherboard</h1>
           </div>
 
           {/* Options */}
           <div className="mt-4 lg:row-span-3 lg:mt-0">
             <h2 className="sr-only">Product information</h2>
-            <p className="text-3xl tracking-tight text-gray-900">{product.price}</p>
+            <div className='flex space-x-5 items-center text-lg lg-text-x1 text-gray-900 mt-6'>
+              
+              <p className='font-semibold'>$7000</p>
+              <p className='opacity-50 line-through'>13000</p>
+              <p className='text-green-600 font-semiboldf'>53% off</p>
+
+            </div>
 
             {/* Reviews */}
             <div className="mt-6">
-              <h3 className="sr-only">Reviews</h3>
-              <div className="flex items-center">
-                <div className="flex items-center">
-                  {[0, 1, 2, 3, 4].map((rating) => (
-                    <StarIcon
-                      key={rating}
-                      className={classNames(
-                        reviews.average > rating ? 'text-gray-900' : 'text-gray-200',
-                        'h-5 w-5 flex-shrink-0'
-                      )}
-                      aria-hidden="true"
-                    />
-                  ))}
-                </div>
-                <p className="sr-only">{reviews.average} out of 5 stars</p>
-                <a href={reviews.href} className="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500">
-                  {reviews.totalCount} reviews
-                </a>
+              <div className="flex items-center space-x-3">
+                <Rating name="read-only" value={5.5} readOnly />
+                <p className='opacity-50 text-sm'>5654 Ratings</p>
+                <p className='ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500'>3870 Reviews</p>
               </div>
             </div>
 
             <form className="mt-10">
-              {/* Colors */}
-              <div>
-                <h3 className="text-sm font-medium text-gray-900">Color</h3>
-
-                <RadioGroup value={selectedColor} onChange={setSelectedColor} className="mt-4">
-                  <RadioGroup.Label className="sr-only">Choose a color</RadioGroup.Label>
-                  <div className="flex items-center space-x-3">
-                    {product.colors.map((color) => (
-                      <RadioGroup.Option
-                        key={color.name}
-                        value={color}
-                        className={({ active, checked }) =>
-                          classNames(
-                            color.selectedClass,
-                            active && checked ? 'ring ring-offset-1' : '',
-                            !active && checked ? 'ring-2' : '',
-                            'relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none'
-                          )
-                        }
-                      >
-                        <RadioGroup.Label as="span" className="sr-only">
-                          {color.name}
-                        </RadioGroup.Label>
-                        <span
-                          aria-hidden="true"
-                          className={classNames(
-                            color.class,
-                            'h-8 w-8 rounded-full border border-black border-opacity-10'
-                          )}
-                        />
-                      </RadioGroup.Option>
-                    ))}
-                  </div>
-                </RadioGroup>
-              </div>
+              
 
               {/* Sizes */}
               <div className="mt-10">
                 <div className="flex items-center justify-between">
                   <h3 className="text-sm font-medium text-gray-900">Size</h3>
-                  <a href="#" className="text-sm font-medium text-indigo-600 hover:text-indigo-500">
-                    Size guide
-                  </a>
+                  
                 </div>
 
                 <RadioGroup value={selectedSize} onChange={setSelectedSize} className="mt-4">
@@ -284,12 +213,9 @@ export default function ProductDetails() {
                 </RadioGroup>
               </div>
 
-              <button
-                type="submit"
-                className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-              >
-                Add to bag
-              </button>
+              <Button variant="contained" sx={{px:"2rem",py:"1rem", bgcolor:"#9155fd"}}>
+                Add To Cart
+              </Button>
             </form>
           </div>
 
@@ -326,6 +252,76 @@ export default function ProductDetails() {
             </div>
           </div>
         </div>
+</section>
+    {/* ratings and reviews */}
+    <section className='text-start'>
+      <h1 className='font-semibold text-lg pb-4'>Recent Reviews & Ratings</h1>
+      <div className='border p-5 '>
+        <Grid container spacing={7}>
+         <Grid item xs={7}>
+          <div className='space-y-5'>
+            { [1,1,1,1].map((item)=> <ProductReviewCard/>)}
+          </div>
+         </Grid>
+
+         <Grid item xs={5}>
+          <h1 className='text-xl font-semibold pb-2'>Product Ratings</h1>
+          <div className='flex items-center space-x-3'>
+            <Rating value={4.6} precision={.5} readOnly/>
+            <p className='opacity-60'>344530 Ratings</p>
+          </div>
+
+          <Box className="mt-5 space-y-4 space-x-auto">
+
+            <Grid container alignItems="center" gap={2}>
+              <Grid item xs={2}>
+                <p>Excellent</p>
+              </Grid>
+              <Grid item xs={7}>
+                <LinearProgress sx={{bgcolor:"#d0d0d0", borderRadius:4, height:7}} variant='determinate' value={80} color='success'/>
+              </Grid>
+            </Grid>
+
+            <Grid container alignItems="center" gap={2}>
+              <Grid item xs={2}>
+                <p>Good</p>
+              </Grid>
+              <Grid item xs={7}>
+                <LinearProgress sx={{bgcolor:"#d0d0d0", borderRadius:4, height:7}} variant='determinate' value={55} color='success'/>
+              </Grid>
+            </Grid><Grid container alignItems="center" gap={2}>
+              <Grid item xs={2}>
+                <p>Average</p>
+              </Grid>
+              <Grid item xs={7}>
+                <LinearProgress sx={{bgcolor:"#d0d0d0", borderRadius:4, height:7}} variant='determinate' value={40} color='warning'/>
+              </Grid>
+            </Grid><Grid container alignItems="center" gap={2}>
+              <Grid item xs={2}>
+                <p>Poor</p>
+              </Grid>
+              <Grid item xs={7}>
+                <LinearProgress sx={{bgcolor:"#d0d0d0", borderRadius:4, height:7}} variant='determinate' value={20} color='error'/>
+              </Grid>
+            </Grid>
+
+          </Box>
+
+         </Grid>
+
+        </Grid>
+      </div>
+
+    </section>
+
+    {/* Similar Products */}
+    <section className='pt-10'>
+      <h1 className='text-start py-5 text-xl font-bold'>Similar Products</h1>
+      <div className='flex flex-wrap justify-center items-center	 space-y-5'>
+        {computer_parts.map((item)=><HomeSectionCard product={item}/>)}
+      </div>
+    </section>
+
       </div>
     </div>
   )
