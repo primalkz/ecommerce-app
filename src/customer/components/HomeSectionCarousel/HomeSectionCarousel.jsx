@@ -13,11 +13,11 @@ const HomeSectionCarousel = ({data,sectionName}) => {
     const [activeIndex,setActiveIndex] = useState(0);
 
     const responsive = {
-        0: { items: 1.5 },
-        720: { items: 3 },
-        1024: { items: 4 },
-        1280: { items: 4.5},
-        1368: { items: 5.5 }
+        0: { items: 1 },
+        720: { items: 2 },
+        1024: { items: 3 },
+        1280: { items: 4},
+        1368: { items: 4.5 }
     };
 
     const slidePrev=()=>setActiveIndex(activeIndex-1);
