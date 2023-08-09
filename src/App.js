@@ -7,21 +7,29 @@ import Product from './customer/components/Product/Product';
 import ProductDetails from './customer/components/ProductDetails/ProductDetails';
 import Cart from './customer/components/Cart/Cart';
 import Checkout from './customer/components/Checkout/Checkout';
+import Order from './customer/components/Order/Order';
+import OrderDetails from './customer/components/Order/OrderDetails';
+import CustomerRouters from './Routers/CustomerRouters'
+import { Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
     <div className="App">
-      <div className='z-10 relative w-full'>
-        <Navigation/>
+
+
+
+      <Routes>
+        <Route path='/*' element={<CustomerRouters/>}></Route>
+
+      </Routes>
+
+      <div >
+       
       </div>
       <div>
-        {/*<HomePage/>*/}
-        {/*{<Product/>}*/}
-        {/*<ProductDetails/>*/}
-        {/*<Cart/>*/}
-        <Checkout/>
+        
       </div>
-      <Footer/>
+    
     </div>
   );
 }
