@@ -3,6 +3,7 @@ import { Dialog, Popover, Tab, Transition } from '@headlessui/react'
 import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Avatar, Button, Menu, MenuItem } from '@mui/material'
 import { deepPurple } from '@mui/material/colors'
+import { useNavigate } from 'react-router-dom'
 
 
 
@@ -10,114 +11,56 @@ const navigation = {
   categories: [
     {
       id: 'computer',
-      name: 'Computer',
+      name: 'Computer Parts',
       featured: [
         {
           name: 'New Arrivals',
           href: '#',
-          imageSrc: 'https://tailwindui.com/img/ecommerce-images/mega-menu-category-01.jpg',
-          imageAlt: 'Models sitting back to back, wearing Basic Tee in black and bone.',
+          imageSrc: 'https://example.com/images/new-arrivals.jpg',
+          imageAlt: 'New Arrivals',
         },
         {
-          name: 'Basic Tees',
+          name: 'Graphics Cards',
           href: '#',
-          imageSrc: 'https://tailwindui.com/img/ecommerce-images/mega-menu-category-02.jpg',
-          imageAlt: 'Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees.',
+          imageSrc: 'https://example.com/images/graphics-cards.jpg',
+          imageAlt: 'Graphics Cards',
         },
       ],
       sections: [
         {
-          id: 'clothing',
-          name: 'Clothing',
+          id: 'processors',
+          name: 'Processors',
           items: [
-            { name: 'Tops', href: '#' },
-            { name: 'Dresses', href: '#' },
-            { name: 'Pants', href: '#' },
-            { name: 'Denim', href: '#' },
-            { name: 'Sweaters', href: '#' },
-            { name: 'T-Shirts', href: '#' },
-            { name: 'Jackets', href: '#' },
-            { name: 'Activewear', href: '#' },
-            { name: 'Browse All', href: '#' },
+            { name: 'Intel', href: '#' },
+            { name: 'AMD', href: '#' },
+            { name: 'ARM', href: '#' },
           ],
         },
         {
-          id: 'accessories',
-          name: 'Accessories',
+          id: 'graphics-cards',
+          name: 'Graphics Cards',
           items: [
-            { name: 'Watches', href: '#' },
-            { name: 'Wallets', href: '#' },
-            { name: 'Bags', href: '#' },
-            { name: 'Sunglasses', href: '#' },
-            { name: 'Hats', href: '#' },
-            { name: 'Belts', href: '#' },
+            { name: 'NVIDIA', href: '#' },
+            { name: 'AMD', href: '#' },
+            { name: 'ASUS', href: '#' },
+            { name: 'GIGABYTE', href: '#' },
+            { name: 'MSI', href: '#' },
           ],
         },
         {
-          id: 'brands',
-          name: 'Brands',
+          id: 'memory',
+          name: 'Memory',
           items: [
-            { name: 'Full Nelson', href: '#' },
-            { name: 'My Way', href: '#' },
-            { name: 'Re-Arranged', href: '#' },
-            { name: 'Counterfeit', href: '#' },
-            { name: 'Significant Other', href: '#' },
-          ],
-        },
-      ],
-    },
-    {
-      id: 'laptop',
-      name: 'Laptop',
-      featured: [
-        {
-          name: 'New Arrivals',
-          href: '#',
-          imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-04-detail-product-shot-01.jpg',
-          imageAlt: 'Drawstring top with elastic loop closure and textured interior padding.',
-        },
-        {
-          name: 'Artwork Tees',
-          href: '#',
-          imageSrc: 'https://tailwindui.com/img/ecommerce-images/category-page-02-image-card-06.jpg',
-          imageAlt:
-            'Three shirts in gray, white, and blue arranged on table with same line drawing of hands and shapes overlapping on front of shirt.',
-        },
-      ],
-      sections: [
-        {
-          id: 'clothing',
-          name: 'Clothing',
-          items: [
-            { name: 'Tops', href: '#' },
-            { name: 'Pants', href: '#' },
-            { name: 'Sweaters', href: '#' },
-            { name: 'T-Shirts', href: '#' },
-            { name: 'Jackets', href: '#' },
-            { name: 'Activewear', href: '#' },
-            { name: 'Browse All', href: '#' },
+            { name: 'RAM', href: '#' },
+            { name: 'Storage', href: '#' },
           ],
         },
         {
-          id: 'accessories',
-          name: 'Accessories',
+          id: 'power-supplies',
+          name: 'Power Supplies',
           items: [
-            { name: 'Watches', href: '#' },
-            { name: 'Wallets', href: '#' },
-            { name: 'Bags', href: '#' },
-            { name: 'Sunglasses', href: '#' },
-            { name: 'Hats', href: '#' },
-            { name: 'Belts', href: '#' },
-          ],
-        },
-        {
-          id: 'brands',
-          name: 'Brands',
-          items: [
-            { name: 'Re-Arranged', href: '#' },
-            { name: 'Counterfeit', href: '#' },
-            { name: 'Full Nelson', href: '#' },
-            { name: 'My Way', href: '#' },
+            { name: 'ATX', href: '#' },
+            { name: 'SFX', href: '#' },
           ],
         },
       ],
@@ -127,7 +70,8 @@ const navigation = {
     { name: 'Company', href: '#' },
     { name: 'Stores', href: '#' },
   ],
-}
+};
+
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -135,6 +79,7 @@ function classNames(...classes) {
 
 export default function Navigation() {
   const [open, setOpen] = useState(false)
+  const navigate=useNavigate();
   
   const [isAuthModalOpen, setOpenAuthModal] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null)
@@ -158,15 +103,15 @@ const handleClose = () => {
   setOpenAuthModal(false);
 };
 
-const handleCategoryClick = (category, section, item, close) => {
-  close();
+const handleCategoryClick = (category, section, item) => {
+  navigate(`/${category.id}/${section.id}/${item.name.toLowerCase().replace(' ', '-')}`);
 };
 
 
 
 
   return (
-    <div className="bg-white">
+    <div className="bg-white mb-5">
       {/* Mobile menu */}
       <Transition.Root show={open} as={Fragment}>
         <Dialog as="div" className="relative z-40 lg:hidden" onClose={setOpen}>
@@ -314,7 +259,7 @@ const handleCategoryClick = (category, section, item, close) => {
   <path fillRule="evenodd" d="M2 3.5A1.5 1.5 0 013.5 2h1.148a1.5 1.5 0 011.465 1.175l.716 3.223a1.5 1.5 0 01-1.052 1.767l-.933.267c-.41.117-.643.555-.48.95a11.542 11.542 0 006.254 6.254c.395.163.833-.07.95-.48l.267-.933a1.5 1.5 0 011.767-1.052l3.223.716A1.5 1.5 0 0118 15.352V16.5a1.5 1.5 0 01-1.5 1.5H15c-1.149 0-2.263-.15-3.326-.43A13.022 13.022 0 012.43 8.326 13.019 13.019 0 012 5V3.5z" clipRule="evenodd" />
 </svg>
 
-           +91 1234567890 Get the best prices on on computersDekho
+           Call 1234567890 Get the best prices on on here
         </p>
 
         <nav aria-label="Top" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -331,15 +276,17 @@ const handleCategoryClick = (category, section, item, close) => {
               </button>
 
               {/* Logo */}
-              <div className="ml-4 flex lg:ml-0">
-                <a href="#">
+              <div onClick={()=>navigate("/")} className="ml-4 flex lg:ml-0">
+                <a href="#" >
+                
                   <span className="sr-only">Your Company</span>
                   <img
                     className="h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                    src="https://png.pngtree.com/png-vector/20211027/ourmid/pngtree-letter-g-logo-png-image_4000891.png"
                     alt=""
                   />
                 </a>
+                <p className='justify-center items-center py-1   space-x-2 font-sm'>  <span sx={{fontSize:"0.5rem"}}>home</span></p>
               </div>
 
               {/* Flyout menus */}
@@ -509,6 +456,7 @@ const handleCategoryClick = (category, section, item, close) => {
                         </MenuItem>
 
                         <MenuItem
+                        onClick={()=>navigate("/account/order")}
                         sx={{
                           fontFamily: 'Space Grotesk',
                           fontSize: 14,
@@ -560,7 +508,7 @@ const handleCategoryClick = (category, section, item, close) => {
 
                 {/* Cart */}
                 <div className="ml-4 flow-root lg:ml-6">
-                  <a href="#" className="group -m-2 flex items-center p-2">
+                  <a href="#" className="group -m-2 flex items-center p-2" onClick={()=>navigate('/account/order')}>
                     <ShoppingBagIcon
                       className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                       aria-hidden="true"
