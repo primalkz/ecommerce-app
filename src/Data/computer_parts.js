@@ -4,8 +4,8 @@ export const computer_parts = [
         "brand": "Intel",
         "title": "Intel Core i9-11900K",
         "color": "Silver",
-        "discountedPrice": 489,
-        "price": 599,
+        "discountedPrice": 49989,
+        "price": 59999,
         "discountPersent": 18,
         "size": [
             {
@@ -24,8 +24,8 @@ export const computer_parts = [
         "brand": "NVIDIA",
         "title": "NVIDIA GeForce RTX 3080",
         "color": "Black",
-        "discountedPrice": 899,
-        "price": 999,
+        "discountedPrice": 89999,
+        "price": 99999,
         "discountPersent": 10,
         "size": [
             {
@@ -44,8 +44,8 @@ export const computer_parts = [
         "brand": "Corsair",
         "title": "Corsair Vengeance LPX 16GB DDR4 RAM",
         "color": "Black",
-        "discountedPrice": 89,
-        "price": 109,
+        "discountedPrice": 3899,
+        "price": 4099,
         "discountPersent": 18,
         "size": [
             {
@@ -64,8 +64,8 @@ export const computer_parts = [
         "brand": "ASUS",
         "title": "ASUS ROG Strix B550-F Gaming Motherboard",
         "color": "Black",
-        "discountedPrice": 199,
-        "price": 249,
+        "discountedPrice": 12199,
+        "price": 12249,
         "discountPersent": 20,
         "size": [
             {
@@ -84,8 +84,8 @@ export const computer_parts = [
         "brand": "Samsung",
         "title": "Samsung 970 EVO Plus 1TB NVMe SSD",
         "color": "Black",
-        "discountedPrice": 169,
-        "price": 199,
+        "discountedPrice": 1969,
+        "price": 2199,
         "discountPersent": 15,
         "size": [
             {
@@ -104,8 +104,8 @@ export const computer_parts = [
         "brand": "EVGA",
         "title": "EVGA SuperNOVA 750 G3 Power Supply",
         "color": "Black",
-        "discountedPrice": 129,
-        "price": 149,
+        "discountedPrice": 2129,
+        "price": 3149,
         "discountPersent": 13,
         "size": [
             {
@@ -124,8 +124,8 @@ export const computer_parts = [
         "brand": "Cooler Master",
         "title": "Cooler Master Hyper 212 RGB CPU Cooler",
         "color": "Silver",
-        "discountedPrice": 39,
-        "price": 49,
+        "discountedPrice": 2899,
+        "price": 3549,
         "discountPersent": 20,
         "size": [
             {
@@ -144,8 +144,8 @@ export const computer_parts = [
         "brand": "NZXT",
         "title": "NZXT H510 Compact ATX Mid-Tower Case",
         "color": "White",
-        "discountedPrice": 79,
-        "price": 99,
+        "discountedPrice": 3379,
+        "price": 3799,
         "discountPersent": 20,
         "size": [
             {
@@ -164,8 +164,8 @@ export const computer_parts = [
         "brand": "AMD",
         "title": "AMD Ryzen 7 5800X",
         "color": "Black",
-        "discountedPrice": 379,
-        "price": 449,
+        "discountedPrice": 12379,
+        "price": 16449,
         "discountPersent": 16,
         "size": [
             {
@@ -184,8 +184,8 @@ export const computer_parts = [
         "brand": "G.Skill",
         "title": "G.Skill Ripjaws V Series 32GB DDR4 RAM",
         "color": "Black",
-        "discountedPrice": 159,
-        "price": 189,
+        "discountedPrice": 5759,
+        "price": 6189,
         "discountPersent": 16,
         "size": [
             {
