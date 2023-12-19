@@ -21,7 +21,7 @@ const HomeSectionCard = ({ product }) => {
                     {product.title}
                 </p>
                 <p className='mt-2 text-sm text-gray-1000'>
-                    ${product.price}
+                    ₹{product.price}
                 </p>
             </div>
 
